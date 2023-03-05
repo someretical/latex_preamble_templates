@@ -1,0 +1,208 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"editor.wordWrap": "wordWrapColumn",
+		"[latex]": {
+			"editor.quickSuggestions": {
+				"strings": true
+			}
+		},
+		"latex-workshop.latex.autoBuild.run": "onSave",
+		"latex-workshop.view.pdf.viewer": "tab",
+		"latex-workshop.synctex.afterBuild.enabled": true,
+		"latex-workshop.latex.outDir": "build",
+		"latex-workshop.latexindent.args": [
+			"-c",
+			"%DIR%/",
+			"-l",
+			"-m",
+			"-y=defaultIndent: '%INDENT%'",
+			"%TMPFILE%"
+		],
+		"latex-workshop.latex.tools": [
+			{
+				"name": "latex",
+				"command": "latex",
+				"args": [
+					"-output-directory=build",
+					"-synctex=1",
+					"-interaction=nonstopmode",
+					"-shell-escape",
+					"-file-line-error",
+					"%DOC%"
+				]
+			},
+			{
+				"name": "dvips",
+				"command": "dvips",
+				"args": [
+					"-o",
+					"%OUTDIR%/%DOCFILE%.ps",
+					"%OUTDIR%/%DOCFILE%.dvi"
+				]
+			},
+			{
+				"name": "ps2pdf",
+				"command": "ps2pdf",
+				"args": [
+					"-dALLOWPSTRANSPARENCY",
+					"%OUTDIR%/%DOCFILE%.ps",
+					"%OUTDIR%/%DOCFILE%.pdf"
+				]
+			},
+			{
+				"name": "pdflatex",
+				"command": "pdflatex",
+				"args": [
+					"-output-directory=build",
+					"-synctex=1",
+					"-interaction=nonstopmode",
+					"-shell-escape",
+					"-file-line-error",
+					"%DOC%"
+				]
+			},
+			{
+				"name": "xelatex",
+				"command": "xelatex",
+				"args": [
+					"-output-directory=build",
+					"-synctex=1",
+					"-interaction=nonstopmode",
+					"-shell-escape",
+					"-file-line-error",
+					"%DOC%"
+				]
+			},
+			{
+				"name": "biber",
+				"command": "biber",
+				"args": [
+					"--output-directory",
+					"build/",
+					"%DOCFILE%"
+				]
+			},
+			{
+				"name": "gs-ebook",
+				"command": "gs",
+				"args": [
+					"-sDEVICE=pdfwrite",
+					"-dCompatibilityLevel=1.4",
+					"-dPDFSETTINGS=/ebook",
+					"-dNOPAUSE",
+					"-dQUIET",
+					"-dBATCH",
+					"-sOutputFile=final/compressed_%DOCFILE%.pdf",
+					"%OUTDIR%/%DOCFILE%.pdf"
+				]
+			},
+			{
+				"name": "gs-print",
+				"command": "gs",
+				"args": [
+					"-sDEVICE=pdfwrite",
+					"-dCompatibilityLevel=1.4",
+					"-dPDFSETTINGS=/printer",
+					"-dNOPAUSE",
+					"-dQUIET",
+					"-dBATCH",
+					"-sOutputFile=final/print_%DOCFILE%.pdf",
+					"%OUTDIR%/%DOCFILE%.pdf"
+				]
+			},
+			{
+				"name": "mktmp",
+				"command": "mkdir",
+				"args": [
+					"build"
+				],
+			},
+			{
+				"name": "mkfinal",
+				"command": "mkdir",
+				"args": [
+					"final"
+				],
+			}
+		],
+		"latex-workshop.latex.recipes": [
+			{
+				"name": "pdflatex",
+				"tools": [
+					"pdflatex"
+				]
+			},
+			{
+				"name": "latex + dvips + ps2pdf",
+				"tools": [
+					"latex",
+					"dvips",
+					"ps2pdf"
+				]
+			},
+			{
+				"name": "xelatex",
+				"tools": [
+					"xelatex"
+				]
+			},
+			{
+				"name": "pdflatex + bibtex + pdflatex",
+				"tools": [
+					"pdflatex",
+					"biber",
+					"pdflatex"
+				]
+			},
+			{
+				"name": "gs-ebook",
+				"tools": [
+					"gs-ebook"
+				]
+			},
+			{
+				"name": "pdflatex x2 + gs-ebook",
+				"tools": [
+					"pdflatex",
+					"pdflatex",
+					"gs-ebook"
+				]
+			},
+			{
+				"name": "gs-print",
+				"tools": [
+					"gs-print"
+				]
+			},
+			{
+				"name": "pdflatex x2 + gs-print",
+				"tools": [
+					"pdflatex",
+					"pdflatex",
+					"gs-print"
+				]
+			},
+			{
+				"name": "gs-print + gs-ebook",
+				"tools": [
+					"gs-print",
+					"gs-ebook"
+				]
+			},
+			{
+				"name": "pdflatex x2 + gs-print + gs-ebook",
+				"tools": [
+					"pdflatex",
+					"pdflatex",
+					"gs-print",
+					"gs-ebook"
+				]
+			}
+		]
+	}
+}

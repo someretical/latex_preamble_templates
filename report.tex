@@ -1,0 +1,182 @@
+\documentclass[a4paper, english, final]{article}
+
+% Dummy text generator
+\usepackage{lipsum}  
+
+% Replace computer modern with palatino
+\usepackage[T1]{fontenc}
+\usepackage[]{newpxtext}
+\usepackage{newpxmath}
+\linespread{1.05} % make page density the same as computer modern
+
+% Set default sans serif font to helvetica
+\usepackage[scaled=0.9]{helvet}
+
+% Replace default typewriter font with beramono
+\usepackage[scaled=0.85]{beramono}
+
+% Allows changing margins
+\usepackage[pass]{geometry}
+
+% Allows landscape pages
+\usepackage{pdflscape}
+
+% Various typography adjustments
+\usepackage[final]{microtype}
+
+% Colors
+\usepackage{xcolor}
+
+% Use -, +
+\usepackage{calc}
+
+% Captions
+\usepackage[labelfont=normalfont, font=it]{caption}
+
+% Display images
+\usepackage{graphicx}
+
+% Centre figures when they exceed line width
+\usepackage[export]{adjustbox}
+
+% "H" option for figures, tables
+\usepackage{float}
+
+% Tables that cross pages
+\usepackage{longtable}
+
+% Thicker lines in table top and bottom
+\usepackage{booktabs}
+
+% Better lists
+\usepackage{enumitem}
+\setlist[enumerate, 1]{label=(\alph*)}
+\setlist[enumerate, 2]{label=\roman*.}
+
+% Harvard bibliography
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\addbibresource{refs.bib}
+
+% Provides \MyTitle, \MyAuthor, and \MyDate macros
+\usepackage{authoraftertitle}
+\title{TITLE HERE}
+\author{AUTHOR HERE}
+\date{\today}
+
+% Allows URLs to be broken at their hyphens
+\PassOptionsToPackage{hyphens}{url}
+% Hyperlinks
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+pdftitle={\MyTitle},
+pdfauthor={\MyAuthor},
+pdfsubject={SUBJECT HERE},
+hidelinks
+}
+
+
+\begin{document}
+
+% \vskip 2em
+\begin{center}
+    {\LARGE \MyTitle \par}
+    \vskip 1.5em
+        {\large
+            \lineskip .5em
+            \begin{tabular}[t]{c}
+                \MyAuthor
+            \end{tabular}\par}
+    \vskip 1em
+        {\large \MyDate}
+\end{center}
+
+\section{New section}
+
+\lipsum[1-3]
+
+{
+    % Include this group if the table is to be wider than the textwidth
+    % The plus 1fill centres the table inside the new width
+    %
+    % \begingroup
+    % \setlength\LTleft{-100pt plus 1fill}
+    % \setlength\LTright{\LTleft}
+
+    \begin{longtable}{ p{0.5\textwidth - 2\tabcolsep} p{0.5\textwidth - 2\tabcolsep} }
+        \caption{Table caption}\label{table:test_table} \\
+        \endfirsthead
+        \caption[]{(continued from previous page)}
+        % \multicolumn{2}{c}{\textit{Continued from previous page}}
+        \endhead
+        \endlastfoot
+        \multicolumn{2}{c}{\textit{Continued on next page}}
+        \endfoot
+        \toprule
+        Column 1 & Column 2
+        \tabularnewline
+        \midrule
+
+        Row 1    & Row 1 \tabularnewline
+
+        Row 2    & Row 2 \tabularnewline
+
+        Row 3    & Row 3 \tabularnewline
+
+        Row 4    & Row 4 \tabularnewline
+
+        Row 5    & Row 5 \tabularnewline
+
+        Row 6    & Row 6 \tabularnewline
+
+        Row 7    & Row 7 \tabularnewline
+
+        \bottomrule
+    \end{longtable}
+
+    % \endgroup
+}
+
+Before text
+\begin{itemize}[noitemsep]
+    \item Test 1
+    \item Test 1
+    \item Test 1
+    \item Test 1
+    \item Test 1
+\end{itemize}
+After text
+\begin{enumerate}
+    \item Test 1
+    \item Test 1
+    \item Test 1
+\end{enumerate}
+After text
+
+\begin{figure}[H]
+    \centering
+    % Adjustbox lets you use the center, left, right options here
+    \includegraphics[width=1.3\textwidth, center]{example-image}
+    \caption{Image caption}
+    \label{fig:id}
+\end{figure}
+
+{
+\newgeometry{top=30mm, bottom=30mm, left=10mm, right=10mm}
+\begin{landscape}
+    \begin{figure}
+        \includegraphics[width=1.3\textwidth, center]{example-image}
+        \caption{caption}
+        \label{fig:id2}
+    \end{figure}
+\end{landscape}
+\restoregeometry
+\clearpage
+}
+
+{
+\newpage
+\nocite{*} % This will print all the entries; the normal behaviour is to only print the entires not cited.
+\printbibliography[heading=bibnumbered,title={Bibliography}]
+}
+
+\end{document}
