@@ -1,7 +1,11 @@
 \documentclass[a4paper, english, final]{article}
 
 % Dummy text generator
-\usepackage{lipsum}  
+\usepackage{lipsum}
+
+% Various maths environments and symbols
+\usepackage[tbtags]{amsmath}
+\usepackage{amsfonts, amsthm, amssymb}
 
 % Replace computer modern with palatino
 \usepackage[T1]{fontenc}
@@ -30,8 +34,20 @@
 % Use -, +
 \usepackage{calc}
 
-% Captions
+% Highlighted boxes
+\usepackage{tcolorbox}
+\tcbset{
+    imp/.style={sharp corners, colback=blue!5, colframe=blue!50, title=Important},
+}
+
+% Number figures, listings, and tables by section instead of a global counter
+\usepackage{chngcntr}
+
+% Italic captions 
 \usepackage[labelfont=normalfont, font=it]{caption}
+
+% Rotate figures
+\usepackage{rotating}
 
 % Display images
 \usepackage{graphicx}
@@ -74,6 +90,9 @@ pdfsubject={SUBJECT HERE},
 hidelinks
 }
 
+% Part of the chngcntr package
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
 
 \begin{document}
 
@@ -90,9 +109,13 @@ hidelinks
         {\large \MyDate}
 \end{center}
 
+\tableofcontents
+\listoffigures
+\listoftables
+
 \section{New section}
 
-\lipsum[1-3]
+\lipsum[1]
 
 {
     % Include this group if the table is to be wider than the textwidth
@@ -116,19 +139,13 @@ hidelinks
         \tabularnewline
         \midrule
 
-        Row 1    & Row 1 \tabularnewline
+        \includegraphics[width=0.3\textwidth, left]{example-image}    & Row 1 \tabularnewline
 
-        Row 2    & Row 2 \tabularnewline
+        Row 2    & \includegraphics[width=0.3\textwidth, left]{example-image} \tabularnewline
 
-        Row 3    & Row 3 \tabularnewline
+        \includegraphics[width=0.3\textwidth, left]{example-image}    & Row 3 \tabularnewline
 
-        Row 4    & Row 4 \tabularnewline
-
-        Row 5    & Row 5 \tabularnewline
-
-        Row 6    & Row 6 \tabularnewline
-
-        Row 7    & Row 7 \tabularnewline
+        Row 4    & \includegraphics[width=0.3\textwidth, left]{example-image} \tabularnewline
 
         \bottomrule
     \end{longtable}
@@ -136,27 +153,30 @@ hidelinks
     % \endgroup
 }
 
-Before text
+\lipsum[1][1-10]
 \begin{itemize}[noitemsep]
-    \item Test 1
-    \item Test 1
-    \item Test 1
-    \item Test 1
-    \item Test 1
+    \item noitemsep itemize
+    \item \lipsum[1][1-3]
+    \item \lipsum[2][1-3]
+    \item \lipsum[3][1-3]
 \end{itemize}
-After text
+\lipsum[1][1-10]
 \begin{enumerate}
-    \item Test 1
-    \item Test 1
-    \item Test 1
+    \item regular enumerate
+    \item \lipsum[1][1-3]
+    \item \lipsum[2][1-3]
+    \item \lipsum[3][1-3]
 \end{enumerate}
-After text
+\lipsum[1][1-5]
+
+\section{Section 2}
+\lipsum[1][1-5]
 
 \begin{figure}[H]
     \centering
     % Adjustbox lets you use the center, left, right options here
     \includegraphics[width=1.3\textwidth, center]{example-image}
-    \caption{Image caption}
+    \caption{adjustbox image width > \textbackslash textwidth}
     \label{fig:id}
 \end{figure}
 
@@ -165,7 +185,7 @@ After text
 \begin{landscape}
     \begin{figure}
         \includegraphics[width=1.3\textwidth, center]{example-image}
-        \caption{caption}
+        \caption{landscape image}
         \label{fig:id2}
     \end{figure}
 \end{landscape}
