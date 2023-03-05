@@ -1,5 +1,13 @@
 # LaTeX Preamble Templates
 
+## Requirements
+
+- TeX distribution ([MikTeX](https://miktex.org/download) for Windows, [TeX Live](https://tug.org/texlive/quickinstall.html) for Linux, etc.)
+    - Make sure all the binaries are added to PATH!
+- [Visual Studio Code](https://code.visualstudio.com/Download)
+- [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) extension
+- [LaTeX Utilities](https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities) extension
+
 ## Windows Notes
 
 The GhostScript CLI is installed as `gsw64c.exe`. To ensure compatibility with the settings, rename it to `gs.exe`
