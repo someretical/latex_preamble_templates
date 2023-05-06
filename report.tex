@@ -29,7 +29,7 @@
 \usepackage[final]{microtype}
 
 % Colors
-\usepackage{xcolor}
+\usepackage[svgnames]{xcolor}
 
 % Use -, +
 \usepackage{calc}
@@ -51,6 +51,15 @@
 
 % Display images
 \usepackage{graphicx}
+
+% Include SVG files
+\usepackage[inkscapepath=images]{svg}
+
+% Display code blocks
+% \usepackage[outputdir=build]{minted}
+\usepackage{minted}
+\setminted{linenos,autogobble,bgcolor=LightYellow}
+\newenvironment{code}{\captionsetup{type=listing}}{}
 
 % Centre figures when they exceed line width
 \usepackage[export]{adjustbox}
@@ -112,6 +121,7 @@ hidelinks
 \tableofcontents
 \listoffigures
 \listoftables
+\listoflistings
 
 \section{New section}
 
@@ -192,6 +202,34 @@ hidelinks
 \restoregeometry
 \clearpage
 }
+
+\begin{code}
+\caption{Code block}
+\label{code:code block}
+\begin{minted}{c++}
+    template<typename T>
+    void g(T &&x)
+    {
+        // ...
+    }
+    
+    template<typename T>
+    void f(T &&x)
+    {
+        g(x);
+    
+        g(std::forward<T>(x));
+    }
+    
+    void h()
+    {
+        MyClass x = MyClass();
+        f(x); // pass as lvalue reference
+        
+        f(MyClass()); // pass as rvalue reference
+    }
+\end{minted}
+\end{code}
 
 {
 \newpage
