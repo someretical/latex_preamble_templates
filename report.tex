@@ -58,7 +58,14 @@
 % Display code blocks
 % \usepackage[outputdir=build]{minted}
 \usepackage{minted}
-\setminted{linenos,autogobble,bgcolor=LightYellow}
+\setminted{
+breaklines,
+linenos,
+autogobble,
+bgcolor=LightYellow,
+fontsize=\small,
+baselinestretch=1
+}
 \newenvironment{code}{\captionsetup{type=listing}}{}
 
 % Centre figures when they exceed line width
